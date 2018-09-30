@@ -1,20 +1,38 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
-  <head>
-    <meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
-    <title>Hello App Engine</title>
-  </head>
+<head>
+	<meta http-equiv="content-type" content="application/xhtml+xml; charset=UTF-8" />
+	<title>KWIC</title>
+	
+	<link rel="stylesheet" type="text/css" href="css/style.css"> 
+	
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
 
-  <body>
-    <h1>Hello App Engine!</h1>
-  
-    <table>
-      <tr>
-        <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
-      </tr>
-      <tr>
-        <td><a href='/hello'>The servlet</a></td>
-      </tr>
-    </table>
-  </body>
+<body>
+	<div id="inputContainer">
+		<h1>KWIC System</h1>
+		<p>Please enter a line.</p>
+		<input id="lineInput" type="text">
+		<button id="submitButton" onclick="submitLine()">Submit Line</button>
+	</div>
+
+	<div id="mainContainer">
+		<div id="inputConatiner">
+			<h3>Input Lines</h3>
+			<table id="inputTable"></table>
+		</div>
+		
+		<div id="shiftedConatiner">
+			<h3>Circularly Shifted Lines</h3>
+			<table id="shiftedTable"></table>
+		</div>
+
+		<div id="sortedConatiner">
+			<h3>Alphabetized Lines</h3>
+			<table id="sortedTable"></table>
+		</div>
+	</div>
+</body>
 </html>
