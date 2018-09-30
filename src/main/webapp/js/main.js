@@ -11,6 +11,9 @@ $(document).ready(function() {
 });
 
 function submitLine() {
+	$("#lineInput").prop('disabled', true);
+	$("#submitButton").prop('disabled', true);
+	
 	var line = $("#lineInput").val().trim();
 	
 	if(line == "") {
@@ -31,11 +34,18 @@ function submitLine() {
         data: JSON.stringify(requestData),
         success: function(responseData) {
         	processResponse(responseData);
+        	$("#lineInput").prop('disabled', false);
+        	$("#submitButton").prop('disabled', false);
+        	$("#lineInput").val("");
+            $("#lineInput").focus();
+        },
+        error: function (jqXHR, exception) {
+        	$("#lineInput").prop('disabled', false);
+        	$("#submitButton").prop('disabled', false);
+        	$("#lineInput").val("");
+            $("#lineInput").focus();
         }
     });
-    
-    $("#lineInput").val("");
-    $("#lineInput").focus();
 }
 
 function processResponse(responseData) {
