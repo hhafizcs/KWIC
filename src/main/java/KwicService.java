@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class KwicService extends HttpServlet {
 	
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Input input = new Input();
 		input.setup(request);
 		
@@ -26,7 +25,7 @@ public class KwicService extends HttpServlet {
 		alphabetizer.setup(shifter);
 		
 		Output output = new Output();
-		String outputString = output.setup(input.getInputLine(), shifter.getShiftedLines(), alphabetizer.getSortedLines());
+		String outputString = output.setup(input, shifter, alphabetizer);
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");

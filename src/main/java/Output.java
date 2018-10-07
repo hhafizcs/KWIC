@@ -1,7 +1,11 @@
 import java.util.ArrayList;
 
 public class Output {
-	public String setup(Line inputLine, ArrayList<Line> shiftedLines, ArrayList<Line> sortedLines) {
+	public String setup(Input input, CircularShifter shifter, Alphabetizer alphabetizer) {
+		Line inputLine = input.getInputLine();
+		ArrayList<Line> shiftedLines = shifter.getShiftedLines();
+		ArrayList<Line> sortedLines = alphabetizer.getSortedLines();
+		
 		String inputLineString = "{ \"line\": \"" + inputLine.val + "\", \"color\": \"" + inputLine.color + "\" }";
 		
 		String shiftedLinesString = "";
