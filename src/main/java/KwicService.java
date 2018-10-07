@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
-
 @SuppressWarnings("serial")
 @WebServlet(
     name = "KwicService",
@@ -19,19 +17,16 @@ public class KwicService extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		Input input = new Input();
-		
-		JSONObject requestObj = input.setup(request.getReader());
-		
-		Line inputLine = new Line(requestObj.getString("line"));
+		input.setup(request);
 		
 		CircularShifter shifter = new CircularShifter();
-		shifter.setup(inputLine);
+		shifter.setup(input);
 		
-		Alphabetizer alphabetizer = new Alphabetizer(requestObj.getJSONArray("sortedLines"));
-		alphabetizer.setup(shifter.getShiftedLines());
+		Alphabetizer alphabetizer = new Alphabetizer(input);
+		alphabetizer.setup(shifter);
 		
 		Output output = new Output();
-		String outputString = output.setup(inputLine, shifter.getShiftedLines(), alphabetizer.getSortedLines());
+		String outputString = output.setup(input.getInputLine(), shifter.getShiftedLines(), alphabetizer.getSortedLines());
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");

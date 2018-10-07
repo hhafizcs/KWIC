@@ -12,7 +12,9 @@ public class CircularShifter {
 		return csLines;
 	}
 	
-	public void setup(Line line) {
+	public void setup(Input input) {
+		Line line = input.getInputLine();
+		
 		csLines.add(line);
 		
 		ArrayList<String> splitLine = new ArrayList<String>(Arrays.asList(line.val.split(" ")));

@@ -5,8 +5,10 @@ import org.json.JSONArray;
 public class Alphabetizer {
 	private ArrayList<Line> sortedLines;
 	
-	public Alphabetizer(JSONArray sortedLinesArray) {
+	public Alphabetizer(Input input) {
+		JSONArray sortedLinesArray = input.getPrevSortedLinesArray();
 		ArrayList<Line> sortedLines = new ArrayList<>();
+		
 		for(int i = 0; i < sortedLinesArray.length(); i++) {
 			String line = sortedLinesArray.getJSONObject(i).getString("line");
 			String color = sortedLinesArray.getJSONObject(i).getString("color");
@@ -20,7 +22,9 @@ public class Alphabetizer {
 		return sortedLines;
 	}
 	
-	public void setup(ArrayList<Line> csLines) {
+	public void setup(CircularShifter shifter) {
+		ArrayList<Line> csLines = shifter.getShiftedLines();
+		
 		for(int i = 0; i < csLines.size(); i++) {
 			if(sortedLines.size() == 0) {
 				sortedLines.add(csLines.get(i));

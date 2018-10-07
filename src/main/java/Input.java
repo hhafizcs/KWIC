@@ -1,14 +1,30 @@
 import java.io.BufferedReader;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Input {
-	public JSONObject setup(BufferedReader reader) {
+	private Line inputLine;
+	private JSONArray prevSortedLinesArray;
+	
+	public Line getInputLine() {
+		return inputLine;
+	}
+	
+	public JSONArray getPrevSortedLinesArray() {
+		return prevSortedLinesArray;
+	}
+	
+	public void setup(HttpServletRequest request) {
 		JSONObject requestObj = null;
 		StringBuffer stringBuffer = new StringBuffer();
-		String bufferline = null;
 		
 		try {
+			BufferedReader reader = request.getReader();
+			String bufferline = null;
+			
 		    while ((bufferline = reader.readLine()) != null)
 		    	stringBuffer.append(bufferline);
 		}
@@ -19,6 +35,7 @@ public class Input {
 		}
 		catch (Exception e) {}
 		
-		return requestObj;
+		inputLine = new Line(requestObj.getString("line"));
+		prevSortedLinesArray = requestObj.getJSONArray("sortedLines");
 	}
 }
