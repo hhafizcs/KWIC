@@ -17,6 +17,10 @@ function submitLine() {
 	var line = $("#lineInput").val().trim();
 	
 	if(line == "") {
+		$("#lineInput").prop('disabled', false);
+    	$("#submitButton").prop('disabled', false);
+    	$("#lineInput").val("");
+        $("#lineInput").focus();
 		return;
 	}
 	
@@ -58,7 +62,8 @@ function processResponse(responseData) {
 	}
 	
 	storedSortedLines = [];
-	$("#sortedTable").html("");
+	$("#sortedTable").empty();
+	$("#sortedTable").append("<tr><th class='text-center'>Alphabetized Lines</th></tr>");
 	var sortedLines = responseData.sortedLines;
 	for(var i = 0; i < sortedLines.length; i++) {
 		storedSortedLines.push(sortedLines[i]);
