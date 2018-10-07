@@ -16,16 +16,18 @@ public class KwicService extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Input input = new Input();
-		input.setup(request);
+		LineStorage lineStorage = new LineStorage();
+		
+		input.setup(request, lineStorage);
 		
 		CircularShifter shifter = new CircularShifter();
-		shifter.setup(input);
+		shifter.setup(lineStorage);
 		
-		Alphabetizer alphabetizer = new Alphabetizer(input);
+		Alphabetizer alphabetizer = new Alphabetizer(lineStorage);
 		alphabetizer.setup(shifter);
 		
 		Output output = new Output();
-		String outputString = output.setup(input, shifter, alphabetizer);
+		String outputString = output.setup(lineStorage, shifter, alphabetizer);
 		
 		response.setContentType("application/json");
 		response.setCharacterEncoding("UTF-8");

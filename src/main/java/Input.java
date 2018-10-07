@@ -6,18 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Input {
-	private Line inputLine;
-	private JSONArray prevSortedLinesArray;
-	
-	public Line getInputLine() {
-		return inputLine;
-	}
-	
-	public JSONArray getPrevSortedLinesArray() {
-		return prevSortedLinesArray;
-	}
-	
-	public void setup(HttpServletRequest request) {
+	public void setup(HttpServletRequest request, LineStorage lineStorage) {
 		JSONObject requestObj = null;
 		StringBuffer stringBuffer = new StringBuffer();
 		
@@ -35,7 +24,9 @@ public class Input {
 		}
 		catch (Exception e) {}
 		
-		inputLine = new Line(requestObj.getString("line"));
-		prevSortedLinesArray = requestObj.getJSONArray("sortedLines");
+		Line inputLine = new Line(requestObj.getString("line"));
+		JSONArray prevSortedLinesArray = requestObj.getJSONArray("sortedLines");
+		
+		lineStorage.setup(inputLine, prevSortedLinesArray);
 	}
 }

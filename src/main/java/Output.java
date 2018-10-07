@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 public class Output {
-	public String setup(Input input, CircularShifter shifter, Alphabetizer alphabetizer) {
-		Line inputLine = input.getInputLine();
+	public String setup(LineStorage lineStorage, CircularShifter shifter, Alphabetizer alphabetizer) {
+		Line inputLine = lineStorage.getInputLine();
 		ArrayList<Line> shiftedLines = shifter.getShiftedLines();
 		ArrayList<Line> sortedLines = alphabetizer.getSortedLines();
 		
