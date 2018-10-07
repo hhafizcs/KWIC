@@ -5,8 +5,8 @@ import org.json.JSONArray;
 public class Alphabetizer {
 	private ArrayList<Line> sortedLines;
 	
-	public Alphabetizer(Input input) {
-		JSONArray sortedLinesArray = input.getPrevSortedLinesArray();
+	public Alphabetizer(LineStorage lineStorage) {
+		JSONArray sortedLinesArray = lineStorage.getPrevSortedLinesArray();
 		ArrayList<Line> sortedLines = new ArrayList<>();
 		
 		for(int i = 0; i < sortedLinesArray.length(); i++) {

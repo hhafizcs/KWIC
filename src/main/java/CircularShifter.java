@@ -12,8 +12,8 @@ public class CircularShifter {
 		return csLines;
 	}
 	
-	public void setup(Input input) {
-		Line line = input.getInputLine();
+	public void setup(LineStorage lineStorage) {
+		Line line = lineStorage.getInputLine();
 		
 		csLines.add(line);
 		
